@@ -1,0 +1,151 @@
+/* src/index.css */
+@import "flowbite";
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+:root {
+  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
+  line-height: 1.5;
+  font-weight: 400;
+  height: 100vh;
+  color-scheme: light dark;
+  color: rgba(0, 0, 0, 0.87);
+  background-color: #ffffff;
+  padding: 20px 100px;
+  font-synthesis: none;
+  text-rendering: optimizeLegibility;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.h-1\/2 {
+  height: 50vh;
+}
+
+.w-6\/10 {
+  width: 60vw;
+}
+
+.w1\/1 {
+  width: 100vw;
+}
+
+.h1\/1 {
+  height: 100vh;
+}
+
+.add\/editForm-container {
+  height: 80vh;
+}
+
+.add\/editForm {
+  padding: 1rem;
+  margin-top: 5%;
+  height: 80%;
+  gap: 2rem;
+}
+
+.title-shoe {
+  font-size: 70px;
+  font-weight: 600;
+  background-image: linear-gradient(to left, #553c9a, #b393d3);
+  color: transparent;
+  background-clip: text;
+  -webkit-background-clip: text;
+}
+
+.users-table {
+  width: 50vw;
+}
+
+@media (max-width:500px) {
+
+  html,
+  body {
+    font-size: 8px;
+    font-weight: 900;
+
+  }
+
+}
+
+@media (max-width:800px) {
+  .users-table {
+    width: 100vw;
+    height: 60vh;
+  }
+
+  html,
+  body {
+    font-size: 10px;
+    font-weight: 700;
+
+  }
+
+}
+
+.user-details-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 40vh;
+}
+
+.user-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+  height: 100vh;
+  width: 100%;
+}
+
+.operation-button {
+  width: 80%;
+}
+
+.operation-container {
+  width: 100vw;
+  padding: 5vh 10vw;
+}
+
+.Modal {
+  --tw-bg-opacity: 0.5
+}
+
+@media (max-width:800px) {
+
+  .navbar {
+    width: calc(100vw);
+    margin-left: -100px;
+  }
+
+  .users-table {
+    margin-left: 70px;
+  }
+
+  .flex.flex-row.justify-between {
+    flex-direction: column;
+    margin-left: 5vw;
+  }
+
+  .flex.flex-row.justify-between main {
+    /* height: 30vh; */
+  }
+
+  .flex.flex-row.justify-between main div canvas {
+    /* color: red; */
+    /* height: 600px !important; */
+    width: 70vw !important;
+    font-size: 5px;
+    height: 20vh !important;
+
+
+  }
+}
+
+.flex.flex-row.justify-between {
+  margin-left: 20vw;
+}
