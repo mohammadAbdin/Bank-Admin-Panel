@@ -2,7 +2,6 @@
 import React, { createContext, ReactNode, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { User, addUserToDB, getAllUsers } from "../Api/HttpsRequest";
-interface FormContextType {}
 
 export const UserContext = createContext<any | undefined>(undefined);
 
@@ -47,8 +46,7 @@ export const UserProvider: React.FC<UserContextProps> = ({ children }) => {
   };
 
   const addAUser = () => {
-    // if(formData.Age)
-    if (parseFloat(formData.Age) < 18) {
+    if (formData.Age < 18) {
       alert("You must be at least 18 years old");
       return;
     } else if (
