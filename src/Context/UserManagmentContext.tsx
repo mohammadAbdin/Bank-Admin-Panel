@@ -1,5 +1,4 @@
 import React, { ChangeEvent, createContext, ReactNode, useState } from "react";
-import { useNavigate } from "react-router-dom";
 import {
   User,
   getAllUsers,
@@ -43,15 +42,21 @@ export const UserManagmentProvider: React.FC<UserManagmentContextProps> = ({
   };
   const depositeToAUserFromDB = async (
     id: string | undefined,
+
     amount: number
   ): Promise<User | undefined> => {
     try {
       if (user != undefined) {
         const updatedUser: User = { ...user, Cash: amount + user.Cash };
-        await setUser((prevUser) => ({
-          ...prevUser,
-          Cash: prevUser.Cash + amount,
-        }));
+        // await setUser((prevUser) => ({
+        setUser((prevUser) => {
+          if (prevUser) {
+            return {
+              ...prevUser,
+              Cash: prevUser.Cash + amount,
+            };
+          }
+        });
         // console.log(amount);
         console.log(user);
         const newUser = await depositeToAUser(updatedUser);
@@ -72,10 +77,14 @@ export const UserManagmentProvider: React.FC<UserManagmentContextProps> = ({
         const updatedUser: User = { ...user, Cash: user.Cash - amount };
         console.log(updatedUser + " minus");
 
-        await setUser((prevUser) => ({
-          ...prevUser,
-          Cash: prevUser.Cash - amount,
-        }));
+        setUser((prevUser) => {
+          if (prevUser) {
+            return {
+              ...prevUser,
+              Cash: prevUser.Cash - amount,
+            };
+          }
+        });
         // console.log(amount);
         console.log(user);
         const newUser = await depositeToAUser(updatedUser);
@@ -98,10 +107,11 @@ export const UserManagmentProvider: React.FC<UserManagmentContextProps> = ({
         const updatedUser: User = { ...user, Credit: amount };
         console.log(updatedUser + " minus");
 
-        await setUser((prevUser) => ({
-          ...prevUser,
-          Credit: amount,
-        }));
+        setUser((prevUser) => {
+          if (prevUser) {
+            return { ...prevUser, Credit: amount };
+          }
+        });
         const newUser = await updateCreditToUser(updatedUser);
         return newUser;
       }
@@ -134,10 +144,11 @@ export const UserManagmentProvider: React.FC<UserManagmentContextProps> = ({
           Cash: reciever.Cash + amount,
         };
 
-        await setUser((prevUser) => ({
-          ...prevUser,
-          Cash: prevUser.Cash - amount,
-        }));
+        setUser((prevUser) => {
+          if (prevUser) {
+            return { ...prevUser, Cash: prevUser.Cash - amount };
+          }
+        });
         // console.log(user);
         await depositeToAUser(updatedReciever);
         const newUser = await depositeToAUser(updatedUser);

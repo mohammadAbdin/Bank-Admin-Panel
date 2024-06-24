@@ -2,7 +2,6 @@ import React, { useContext } from "react";
 import InputComp from "./InputComp";
 import { Button } from "flowbite-react";
 import { UserContext } from "../Context/UsersContext";
-import { useNavigate } from "react-router-dom";
 
 interface AddUserProps {
   todo: string | number;
@@ -10,8 +9,6 @@ interface AddUserProps {
 }
 
 const AddUser: React.FC<AddUserProps> = ({ todo, button }) => {
-  const navigate = useNavigate();
-
   const { addAUser } = useContext(UserContext);
 
   return (
@@ -28,7 +25,7 @@ const AddUser: React.FC<AddUserProps> = ({ todo, button }) => {
         <InputComp input="Age" />
         <div className="w-32 self-center">
           <Button
-            onClick={(e: React.MouseEvent<HTMLButtonElement>) => {
+            onClick={() => {
               addAUser();
             }}
             color="warning"
