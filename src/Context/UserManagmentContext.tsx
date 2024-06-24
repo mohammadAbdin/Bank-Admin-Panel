@@ -46,11 +46,11 @@ export const UserManagmentProvider: React.FC<UserManagmentContextProps> = ({
     amount: number
   ): Promise<User | undefined> => {
     try {
-      if (user != undefined) {
+      if (user?.Cash != undefined) {
         const updatedUser: User = { ...user, Cash: amount + user.Cash };
         // await setUser((prevUser) => ({
         setUser((prevUser) => {
-          if (prevUser) {
+          if (prevUser?.Cash) {
             return {
               ...prevUser,
               Cash: prevUser.Cash + amount,
@@ -73,12 +73,16 @@ export const UserManagmentProvider: React.FC<UserManagmentContextProps> = ({
     amount: number
   ): Promise<User | undefined> => {
     try {
-      if (user != undefined && user.Cash + user.Credit - amount >= 0) {
+      if (
+        user?.Cash != undefined &&
+        user.Credit != undefined &&
+        user.Cash + user.Credit - amount >= 0
+      ) {
         const updatedUser: User = { ...user, Cash: user.Cash - amount };
         console.log(updatedUser + " minus");
 
         setUser((prevUser) => {
-          if (prevUser) {
+          if (prevUser?.Cash) {
             return {
               ...prevUser,
               Cash: prevUser.Cash - amount,
@@ -135,26 +139,33 @@ export const UserManagmentProvider: React.FC<UserManagmentContextProps> = ({
     amount: number
   ): Promise<User | undefined> => {
     try {
-      if (user != undefined && user.Cash + user.Credit - amount >= 0) {
+      if (
+        user?.Cash != undefined &&
+        user?.Credit != undefined &&
+        user.Cash + user.Credit - amount >= 0
+      ) {
         console.log(reciever, "the reciever");
 
         const updatedUser: User = { ...user, Cash: user.Cash - amount };
-        const updatedReciever: User = {
-          ...reciever,
-          Cash: reciever.Cash + amount,
-        };
 
-        setUser((prevUser) => {
-          if (prevUser) {
-            return { ...prevUser, Cash: prevUser.Cash - amount };
-          }
-        });
-        // console.log(user);
-        await depositeToAUser(updatedReciever);
-        const newUser = await depositeToAUser(updatedUser);
-        return newUser;
-      } else {
-        alert("you do not have enough money");
+        if (reciever?.Cash) {
+          const updatedReciever: User = {
+            ...reciever,
+            Cash: reciever.Cash + amount,
+          };
+
+          setUser((prevUser) => {
+            if (prevUser?.Cash) {
+              return { ...prevUser, Cash: prevUser.Cash - amount };
+            }
+          });
+          // console.log(user);
+          await depositeToAUser(updatedReciever);
+          const newUser = await depositeToAUser(updatedUser);
+          return newUser;
+        } else {
+          alert("you do not have enough money");
+        }
       }
     } catch (error) {
       console.error(error);
@@ -189,10 +200,7 @@ export const UserManagmentProvider: React.FC<UserManagmentContextProps> = ({
     }
   };
 
-  //functions and states to be declared and defined
-
   const contextValue: any = {
-    //functions and states to be exported
     getAUserFromDB,
     user,
     setUser,

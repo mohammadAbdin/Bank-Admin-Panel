@@ -13,7 +13,7 @@ const EditUserForm: React.FC<EditUserFormProps> = ({
   user,
   handleChangeInput,
   editAUserFromDb,
-  onclose,
+  onClose,
 }) => {
   const navigate = useNavigate();
 
@@ -28,7 +28,8 @@ const EditUserForm: React.FC<EditUserFormProps> = ({
             <input
               type="text"
               id={`${detail}`}
-              value={user[`${detail}`]}
+              // value={user[`${detail}`]}
+              value={user[detail as keyof User]} // Fixed line
               onChange={(e) => handleChangeInput(e)}
               className="w-full px-3 py-2 border rounded"
               placeholder={`Enter ${detail}`}

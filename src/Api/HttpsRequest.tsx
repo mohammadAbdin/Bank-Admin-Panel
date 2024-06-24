@@ -7,8 +7,8 @@ export interface User {
   PassaportId: string;
   Age: number;
   Address: string;
-  Credit: number | undefined;
-  Cash: number | undefined;
+  Credit?: number;
+  Cash?: number;
   Email: string;
 }
 export const depositeToAUser = async (user: User): Promise<any> => {
