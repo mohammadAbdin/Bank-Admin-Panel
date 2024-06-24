@@ -45,6 +45,8 @@ export const UserManagmentProvider: React.FC<UserManagmentContextProps> = ({
 
     amount: number
   ): Promise<User | undefined> => {
+    console.log(id);
+
     try {
       if (user?.Cash != undefined) {
         const updatedUser: User = { ...user, Cash: amount + user.Cash };
@@ -72,6 +74,7 @@ export const UserManagmentProvider: React.FC<UserManagmentContextProps> = ({
     id: string | undefined,
     amount: number
   ): Promise<User | undefined> => {
+    console.log(id);
     try {
       if (
         user?.Cash != undefined &&
@@ -106,6 +109,7 @@ export const UserManagmentProvider: React.FC<UserManagmentContextProps> = ({
     id: string | undefined,
     amount: number
   ): Promise<User | undefined> => {
+    console.log(id);
     try {
       if (user != undefined) {
         const updatedUser: User = { ...user, Credit: amount };
@@ -191,7 +195,6 @@ export const UserManagmentProvider: React.FC<UserManagmentContextProps> = ({
   };
   const editAUserFromDb = async (user: User): Promise<User | undefined> => {
     try {
-      console.log("hi");
       const newUser = await editAUser(user);
       return newUser;
     } catch (error) {

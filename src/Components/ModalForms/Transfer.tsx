@@ -30,11 +30,17 @@ const Transfer: React.FC<DepositFormProps> = ({
 
   const amount = useRef<HTMLInputElement>(null);
   const handleUserChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
-    const selectedValue = users[parseFloat(e.target.value) - 1];
-    console.log(selectedValue);
-    setSelectedUser(selectedValue);
+    if (users) {
+      const selectedValue = users[parseFloat(e.target.value) - 1];
+      console.log(selectedValue);
+      setSelectedUser(selectedValue);
+    }
+    // const selectedValue = users[parseFloat(e.target.value) - 1];
+    // console.log(selectedValue);
+    // setSelectedUser(selectedValue);
   };
   useEffect(() => {
+    setSelectedUserName(undefined);
     const fetchingData = async () => {
       getAllUsersFromDB().then((data: User[] | undefined) => {
         setUsers(data);

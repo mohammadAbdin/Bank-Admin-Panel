@@ -17,11 +17,11 @@ const GoldPricesChart: React.FC<GoldPricesChartProps> = ({ base }) => {
 
   // Function to handle resizing
   const handleResize = useCallback(() => {
-    // if (window.innerWidth < 1000) {
-    //   setFontSize(15); // Smaller font size for small screens
-    // } else {
-    //   setFontSize(12); // Default font size
-    // }
+    if (window.innerWidth < 1000) {
+      setFontSize(15); // Smaller font size for small screens
+    } else {
+      setFontSize(12); // Default font size
+    }
   }, []);
 
   useEffect(() => {
@@ -65,16 +65,16 @@ const GoldPricesChart: React.FC<GoldPricesChartProps> = ({ base }) => {
       legend: {
         labels: {
           font: {
-            // size: fontSize,
+            size: fontSize,
           },
         },
       },
       tooltip: {
         bodyFont: {
-          // size: fontSize,
+          size: fontSize,
         },
         titleFont: {
-          // size: fontSize,
+          size: fontSize,
         },
       },
     },
@@ -82,14 +82,14 @@ const GoldPricesChart: React.FC<GoldPricesChartProps> = ({ base }) => {
       x: {
         ticks: {
           font: {
-            // size: fontSize,
+            size: fontSize,
           },
         },
       },
       y: {
         ticks: {
           font: {
-            // size: fontSize,
+            size: fontSize,
           },
         },
       },
