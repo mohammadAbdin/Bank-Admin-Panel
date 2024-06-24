@@ -6,8 +6,11 @@ import { UserProvider } from "./Context/UsersContext";
 import { UserManagmentProvider } from "./Context/UserManagmentContext";
 import User from "./Pages/UserIssues/User";
 import NavigationMenu from "./Components/NavigationMenu";
-
-const links = [
+interface NavigationLink {
+  label: string;
+  href: string;
+}
+const links: NavigationLink[] = [
   { label: "Users", href: "/" },
   { label: "Transactions", href: "#" },
 ];

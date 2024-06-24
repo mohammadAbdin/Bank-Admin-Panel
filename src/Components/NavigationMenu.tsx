@@ -6,8 +6,10 @@ interface NavigationLink {
   label: string;
   href: string;
 }
-
-const NavigationMenu: React.FC<NavigationLink[]> = ({ links }) => {
+interface NavigationMenuProps {
+  links: NavigationLink[];
+}
+const NavigationMenu: React.FC<NavigationMenuProps> = ({ links }) => {
   return (
     <div className="navbar flex flex-col h-screen bg-gray-100">
       <header>
